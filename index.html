@@ -17,7 +17,7 @@
                     <p class="lead text-center">Current Reservations and Waiting List</p>
                     <hr></hr>
                     <p class="lead text-center">
-                      <a class="btn btn-warning btn-lg" href="./view.html" role="button"><span class="glyphicon glyphicon-list-alt"></span> View Tables</a>
+                      <a class="btn btn-warning btn-lg" href="view.html" role="button"><span class="glyphicon glyphicon-list-alt"></span> View Tables</a>
                       <a class="btn btn-default btn-lg glyphicon glyphicon-home" href="#" role="button"></a>
                     </p>
                   </div>
@@ -47,7 +47,26 @@
                         </div>
                     </div>
     </div>
+    <script type="text/javascript">
+        $(".btn btn-warning add-btn").on("click", function(event) {
+        event.preventDefault();//prevent defaut event from happening 
+        var newReserve = {
+            name: $("#name-input").val().trim(),
+            phone: $("#phone-input").val().trim(),
+            email: $("#email-input").val().trim(),
+            uniqueId: $("#id-input").val().trim()
+        };
+
+        // Question: What does this code do??
+        //newCharacter = req.body in server.js
+        $.post("/api/new", newReserve)
+        .then(function(data) {
+            console.log(data);
+            alert("reservation added");
+        });
+        });
     
+    </script>
     
 </body>
 </html>
